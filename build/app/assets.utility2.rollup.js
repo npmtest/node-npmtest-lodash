@@ -581,7 +581,7 @@ local.templateApidocHtml = '\
                 .filter(function (element) {
                     return element.trim();
                 })
-                .slice(0, 128);
+                .slice(0, 64);
             // init moduleMain
             try {
                 console.error('apidocCreate - requiring ' + options.dir + ' ...');
@@ -671,8 +671,8 @@ local.templateApidocHtml = '\
                         tmp.skip = local.path.extname(file) !== '.js' ||
                             file.indexOf(options.packageJson.main) >= 0 ||
                             new RegExp('(?:\\b|_)(?:archive|artifact|asset|' +
-                                'bin|bower_components|build|' +
-                                'cli|coverage' +
+                                'bower_components|build|' +
+                                'coverage|' +
                                 'doc|dist|' +
                                 'example|external|' +
                                 'fixture|' +
@@ -699,7 +699,7 @@ local.templateApidocHtml = '\
                 } catch (errorCaught) {
                     console.error(errorCaught);
                 }
-                return options.exampleList.length < 256;
+                return options.exampleList.length < 128;
             });
             local.apidocModuleDictAdd(options, options.moduleExtraDict);
             Object.keys(options.moduleDict).forEach(function (key) {
@@ -788,12 +788,13 @@ local.templateApidocHtml = '\
                                 tmp.module,
                                 tmp.module.prototype
                             ].some(function (dict) {
-                                return Object.keys(dict || {}).some(function (key) {
-                                    try {
-                                        return typeof dict[key] === 'function';
-                                    } catch (ignore) {
-                                    }
-                                });
+                                return typeof dict === 'function' ||
+                                    Object.keys(dict || {}).some(function (key) {
+                                        try {
+                                            return typeof dict[key] === 'function';
+                                        } catch (ignore) {
+                                        }
+                                    });
                             });
                             if (!isModule) {
                                 return;
@@ -1538,10 +1539,12 @@ local.templateApidocHtml = '\
                     });
                 }
             });
-            // skip and limit
-            result = result.slice(skip || 0, (skip || 0) + (limit || Infinity));
+            // skip
+            result = result.slice(skip || 0);
             // shuffle
             ((shuffle && local.listShuffle) || local.nop)(result);
+            // limit
+            result = result.slice(0, limit || Infinity);
             return result;
         };
 
@@ -12385,7 +12388,7 @@ return Utf8ArrayToStr(bff);
                 sortDefault: [{
                     fieldName: '_id'
                 }, {
-                    fieldName: 'buildFinishedAt'
+                    fieldName: 'buildStartedAt'
                 }, {
                     fieldName: 'buildState'
                 }, {
@@ -12481,7 +12484,9 @@ return Utf8ArrayToStr(bff);
                             return {
                                 _id: dbRow.name.replace('node-' + options.githubOrg + '-', ''),
                                 active: dbRow.active,
+                                buildDuration: data.duration,
                                 buildFinishedAt: data.finished_at,
+                                buildStartedAt: data.started_at,
                                 buildState: data.state
                             };
                         }));
