@@ -1,6 +1,6 @@
 # npmtest-lodash
 
-#### test coverage for  [lodash (v4.17.4)](https://lodash.com/)  [![npm package](https://img.shields.io/npm/v/npmtest-lodash.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-lodash) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-lodash.svg)](https://travis-ci.org/npmtest/node-npmtest-lodash)
+#### basic test coverage for  [lodash (v4.17.4)](https://lodash.com/)  [![npm package](https://img.shields.io/npm/v/npmtest-lodash.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-lodash) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-lodash.svg)](https://travis-ci.org/npmtest/node-npmtest-lodash)
 
 #### Lodash modular utilities.
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-lodash/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-lodash/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-lodash/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-lodash/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-lodash/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-lodash/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-lodash/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-lodash/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-lodash/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-lodash/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-lodash/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-lodash/build/coverage.html/index.html)
 
@@ -86,7 +86,8 @@
     "scripts": {
         "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
     },
-    "version": "4.17.4"
+    "version": "4.17.4",
+    "bin": {}
 }
 ```
 
